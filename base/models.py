@@ -23,8 +23,20 @@ class Autoridad(models.Model):
         verbose_name_plural='Autoridades'
 
 class Licencia(models.Model):
+    CLASES = (
+        ('A', 'A'),
+        ('B', 'B'),
+        ('C', 'C'),
+    )
+    CATEGORIAS = (
+        ('1', '1'),
+        ('2', '2'),
+        ('3', '3'),
+    )
     persona = models.ForeignKey(Persona)
     autoridad = models.ForeignKey(Autoridad)
+    clase = models.CharField(max_length=1, choices=CLASES, default='A')
+    categoria = models.CharField(max_length=1, choices=CATEGORIAS, default='1')
     numero_licencias = models.CharField(max_length=6)
     fecha_expedicion = models.DateField()
     fecha_revalidacion = models.DateField()
