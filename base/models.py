@@ -37,7 +37,7 @@ class Licencia(models.Model):
     autoridad = models.ForeignKey(Autoridad)
     clase = models.CharField(max_length=1, choices=CLASES, default='A')
     categoria = models.CharField(max_length=1, choices=CATEGORIAS, default='1')
-    numero_licencias = models.CharField(max_length=6)
+    numero_licencia = models.IntegerField()
     fecha_expedicion = models.DateField()
     fecha_revalidacion = models.DateField()
     restricciones = models.CharField(max_length=6)
