@@ -15,8 +15,8 @@ class Persona(models.Model):
 
 class Autoridad(models.Model):
     nombre_autoridad = models.CharField(max_length=255)
-    fechainicio_autoridad = models.DateField()
-    fechainicio_autoridad = models.DateField()
+    fecha_inicio_autoridad = models.DateField()
+    fecha_inicio_autoridad = models.DateField()
     firma_autoridad = models.ImageField(upload_to='firmas_autoridad', max_length=100)
 
     class Meta:
@@ -38,7 +38,7 @@ class Sancion(models.Model):
     entidad = models.CharField(max_length=255)
     distrito = models.CharField(max_length=255)
     infracion = models.CharField(max_length=255)
-    gradoAlcohol = models.CharField(max_length=255)
+    grado_alcohol = models.CharField(max_length=255)
     retencion = models.BooleanField(default=True)
     carnet_policial = models.IntegerField()
 
