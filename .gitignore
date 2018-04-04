@@ -1,3 +1,5 @@
 db.sqlite3
 fotos
 firmas*
+*.pyc
+migrations
