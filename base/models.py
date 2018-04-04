@@ -42,3 +42,6 @@ class Sancion(models.Model):
     retencion = models.BooleanField(default=True)
     carnet_policial = models.IntegerField()
 
+    class Meta:
+        verbose_name_plural='Sanciones'
+
