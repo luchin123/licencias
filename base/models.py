@@ -44,7 +44,6 @@ class Licencia(models.Model):
 
 class Sancion(models.Model):
     persona = models.ForeignKey(Persona)
-    licencia = models.ForeignKey(Licencia)
     fecha_infracion = models.DateField()
     numero_papeleta = models.IntegerField()
     entidad = models.CharField(max_length=255)
