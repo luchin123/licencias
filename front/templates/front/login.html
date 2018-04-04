@@ -1,0 +1,30 @@
+{% extends 'front/base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-6">
+        <div class="intro">
+            <h3 class="text-success">Licencias</h3>
+        </div>
+        <p>Bienvenido al sistema de consultas de licencias de conducir de la Muncipalidad Provincial de Urubamba.</p>
+        <p>Puede iniciar sesión o puede <a href="{% url 'front:consulta' %}">hacer consultas como invitado</a>.</p>
+    </div>
+    <div class="col-md-6">
+        <h1>Iniciar Sesión</h1>
+        <form role="form" action="" method="post">
+            <div class="form-group">
+                <label for="username">Usuario</label>
+                <input id="username" name="username" type="text" class="form-control" required autofocus>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input id="password" name="password" type="password" class="form-control" required>
+            </div>
+            {% csrf_token %}
+            <button type="submit" class="btn btn-primary btn-block">Ingresar</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block title %}Iniciar sesión{% endblock %}
