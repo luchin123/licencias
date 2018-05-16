@@ -13,6 +13,9 @@ class Persona(models.Model):
     foto = models.ImageField(upload_to='fotos', max_length=100)
     firma = models.ImageField(upload_to='firmas', max_length=100)
 
+    def __str__(self):
+        return '%s %s' % (self.nombres,self.apellidos)
+
 class Autoridad(models.Model):
     nombre_autoridad = models.CharField(max_length=255)
     fecha_inicio_autoridad = models.DateField()
@@ -22,6 +25,8 @@ class Autoridad(models.Model):
     class Meta:
         verbose_name_plural='Autoridades'
 
+    def __str__(self):
+        return  self.nombre_autoridad
 class Licencia(models.Model):
     CLASES = (
         ('A', 'A'),

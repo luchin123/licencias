@@ -8,6 +8,7 @@ from django.contrib import messages
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
 
+from base.models import Licencia
 from base.models import Persona
 from base.forms import PersonaForm
 
@@ -33,7 +34,8 @@ def the_login(request):
     return render(request, 'front/login.html')
 
 def consulta(request):
-    return render(request, 'front/consulta.html')
+    licencias = Licencia.objects.all()
+    return render(request, 'front/consulta.html',{'licencias': licencias})
 
 @login_required
 def index(request):
