@@ -10,7 +10,7 @@ from django.core.urlresolvers import reverse
 
 from base.models import Licencia
 from base.models import Persona
-from base.forms import PersonaForm
+from base.forms import PersonaForm, LicenciaForm
 
 def the_login(request):
     if(request.user.is_authenticated()):
@@ -46,3 +46,22 @@ def lista(request):
     personas = Persona.objects.all()
     return render(request, 'front/lista.html', {'personas': personas})
 
+
+@login_required
+def licencia(request):
+    if request.method == 'POST':
+        form = LicenciaForm(request.POST)
+        if form.is_valid():
+            licencia = form.save(commit=False)
+            persona = request.POST.get('persona')
+            persona = Persona.objects.get(id = persona)
+            licencia.persona = persona
+            licencia.save()
+
+            messages.warning(request, 'Se ha creado una licencia.')
+            return HttpResponseRedirect(reverse('front:consulta'))
+        else:
+            return render(request, 'front/licencia.html', {'form': form})
+    else:
+        form = LicenciaForm()
+        return render(request, 'front/licencia.html', {'form': form})

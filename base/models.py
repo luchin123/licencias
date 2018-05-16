@@ -6,7 +6,7 @@ from django.db import models
 class Persona(models.Model):
     nombres = models.CharField(max_length=255)
     apellidos = models.CharField(max_length=255)
-    dni = models.CharField(max_length=8)
+    dni = models.CharField(max_length=8, unique=True)
     fecha_nacimiento = models.DateField()
     direccion = models.CharField(max_length=255)
     donacion = models.BooleanField(default=True)
@@ -45,7 +45,7 @@ class Licencia(models.Model):
     numero_licencia = models.IntegerField()
     fecha_expedicion = models.DateField()
     fecha_revalidacion = models.DateField()
-    restricciones = models.CharField(max_length=6)
+    restricciones = models.TextField(blank=True, null=True, default='Ninguno')
 
 class Sancion(models.Model):
     persona = models.ForeignKey(Persona)

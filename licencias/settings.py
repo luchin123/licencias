@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'base.apps.BaseConfig',
     'front.apps.FrontConfig',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -104,8 +105,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
-
-LANGUAGE_CODE = 'es-es'
+LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'America/Lima'
 
@@ -122,3 +122,5 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 LOGIN_URL = '/login/'
+
+DATE_INPUT_FORMATS = ['%d-%m-%Y','%Y-%m-%d']

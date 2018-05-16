@@ -11,5 +11,6 @@ urlpatterns = [
     url(r'^login/$', views.the_login, name = 'login'),
     url(r'^consulta/$', views.consulta, name = 'consulta'),
     url(r'^lista/$', views.lista, name = 'lista'),
+    url(r'^licencia/$', views.licencia, name = 'licencia'),
 
 ]
