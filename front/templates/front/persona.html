@@ -3,18 +3,21 @@
 {% block content %}
     <div class="row">
         <div class="col-md-12">
-            <h1>Crear licencia
+            {% if form.instance.id != None %}
+                <h1>Editar Persona
+                    <span class="small pull-right">
+                        <a href="{% url 'front:persona' %}" class="btn btn-primary">Crear persona</a>
+                        <a href="{% url 'front:lista' %}" class="btn btn-primary">Ver todas las Personas</a>
+                    </span>
+                </h1>
+            {% else %}
+                <h1>Crear Persona
                 <span class="small pull-right">
-                    <a href="{% url 'front:consulta' %}" class="btn btn-primary">Ver todas las licencias</a>
+                    <a href="{% url 'front:lista' %}" class="btn btn-primary">Ver todas las Personas</a>
                 </span>
             </h1>
-
-            <form action="" method="post">
-                <div class="form-group">
-                    <label for="">Persona:</label>
-                    <input type="text" class="form-control ac-persona" placeholder="Ingrese la persona" required value="{{form.instance.persona}}">
-                    <input type="hidden" id="id_persona" value="{{form.instance.persona.pk}}" name="persona">
-                </div>
+            {% endif %}
+            <form action="" method="post" enctype="multipart/form-data">
                 {% for field in  form %}
                     <div class="form-group">
                         <label for="">{{ field.label }}:</label>
@@ -32,4 +35,4 @@
 
 {% endblock content %}
 
-{% block title %}Consultas{% endblock title %}
+{% block title %}Listas{% endblock title %}

@@ -21,6 +21,7 @@
             <th>Fecha Exp</th>
             <th>Fecha Rev</th>
             <th>Restrrcciones</th>
+            <th>Acciones</th>
         </tr>
     </thead>
     <tbody>
@@ -34,6 +35,7 @@
                 <td>{{ licencia.fecha_expedicion }}</td>
                 <td>{{ licencia.fecha_revalidacion }}</td>
                 <td>{{ licencia.restricciones }}</td>
+                <td><a href="{% url 'front:licencia'  licencia.id %}">Editar</a></td>
             </tr>
         {% empty %}
             <tr>

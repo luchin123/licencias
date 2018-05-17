@@ -4,7 +4,11 @@
 <div class="row">
     <div class="col-md-12">
         <div class="intro">
-            <h3 class="text-success">Personas</h3>
+            <h3 class="text-success">Personas
+                <span class="small pull-right">
+                    <a href="{% url 'front:persona' %}" class="btn btn-primary">Crear Persona</a>
+                </span>
+            </h3>
         </div>
     </div>
 </div>
@@ -14,8 +18,10 @@
         <tr>
             <th>Nombres</th>
             <th>Apellidos</th>
+            <th>Fecha Nacimiento</th>
             <th>Direccion</th>
-            <th>Firma</th>
+            <th>Donacion</th>
+            <th>foto</th>
         </tr>
     </thead>
     <tbody>
@@ -23,8 +29,12 @@
             <tr>
                 <td>{{ persona.nombres }}</td>
                 <td>{{ persona.apellidos }}</td>
+                <td>{{ persona.fecha_nacimiento }}</td>
                 <td>{{ persona.direccion }}</td>
-                <td>{{ persona.direccion }}</td>
+                <td>{{ persona.donacion }}</td>
+                <td>{{ persona.foto }}</td>
+                <td><i class="fa fa-edit"><a href="{% url 'front:persona'  persona.id %}">Editar</a></i></td>
+                <td><i class="fa fa-automobile"><a href="{% url 'front:lista_sanciones'  persona.id %}">Sanciones</a></i></td>
             </tr>
         {% empty %}
             <tr>
@@ -35,4 +45,4 @@
 </table>
 {% endblock %}
 
-{% block title %}Iniciar sesión{% endblock %}
+{% block title %}listas{% endblock %}

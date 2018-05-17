@@ -1,19 +1,42 @@
 # -*- coding: utf-8 -*-
 
-from django.forms import ModelForm, TextInput, Select, Textarea, DateField
+from django.forms import ModelForm, TextInput, Select, Textarea, DateField, CheckboxInput, FileInput
 
-from models import Persona, Licencia
+from models import Persona, Licencia, Sancion
 from django.conf import settings
 
 class PersonaForm(ModelForm):
+    fecha_nacimiento = DateField(
+        input_formats=settings.DATE_INPUT_FORMATS,
+        widget=TextInput(attrs={
+            'class': 'form-control datepicker',
+        })
+    )
     class Meta:
         model = Persona
-        exclude = '__all__'
+        fields = '__all__'
         widgets = {
             'nombres': TextInput(attrs={
                 'class': 'form-control',
                 'placeholder': 'Nombres',
             }),
+            'apellidos': TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Apellidos',
+            }),
+            'dni': TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'DNI',
+            }),
+            'direccion': TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Direccion',
+            }),
+            'donacion': CheckboxInput(attrs={
+                'class': 'form-check-input',
+                'placeholder': 'Donacion',
+            }),
+          
         }
 
 
@@ -51,4 +74,49 @@ class LicenciaForm(ModelForm):
             'restricciones': Textarea(attrs={
                 'class': 'form-control',
             }),
+        }
+
+class SancionForm(ModelForm):
+    fecha_infracion = DateField(
+        input_formats=settings.DATE_INPUT_FORMATS,
+        widget=TextInput(attrs={
+            'class': 'form-control datepicker',
+        })
+    )
+    class Meta:
+        model = Sancion
+        exclude = ('persona',)
+        widgets = {
+            'persona': TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Nombres',
+            }),
+            'numero_papeleta': TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Apellidos',
+            }),
+            'entidad': TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'DNI',
+            }),
+            'distrito': TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Direccion',
+            }),
+            'infracion': TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'infraccion',
+            }),
+            'grado_alcohol': TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Donacion',
+            }),
+            'carnet_policial': TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Donacion',
+            }),
+          
+          
+          
+          
         }

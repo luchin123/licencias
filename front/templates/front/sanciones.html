@@ -3,18 +3,8 @@
 {% block content %}
     <div class="row">
         <div class="col-md-12">
-            <h1>Crear licencia
-                <span class="small pull-right">
-                    <a href="{% url 'front:consulta' %}" class="btn btn-primary">Ver todas las licencias</a>
-                </span>
-            </h1>
-
+            <h1>Crear Sanciones para {{persona}} ({{persona.dni}})</h1>
             <form action="" method="post">
-                <div class="form-group">
-                    <label for="">Persona:</label>
-                    <input type="text" class="form-control ac-persona" placeholder="Ingrese la persona" required value="{{form.instance.persona}}">
-                    <input type="hidden" id="id_persona" value="{{form.instance.persona.pk}}" name="persona">
-                </div>
                 {% for field in  form %}
                     <div class="form-group">
                         <label for="">{{ field.label }}:</label>
@@ -32,4 +22,4 @@
 
 {% endblock content %}
 
-{% block title %}Consultas{% endblock title %}
+{% block title %}Sanciones{% endblock title %}
