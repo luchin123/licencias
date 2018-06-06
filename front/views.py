@@ -104,13 +104,13 @@ def persona(request, id=None):
         return render(request, 'front/persona.html', {'form': form})
 
 @login_required
-def sancion_persona(request, id_persona, id=None):
+def sancion_persona(request, id_persona, id):
     persona=Persona.objects.get(id=id_persona)
     s = None
-    if id is not None
+    if id != '0':
         s = Sancion.objects.get(id=id)
     if request.method == 'POST':
-        if is None:
+        if s is None:
             form = SancionForm(request.POST)
         else:
             form = SancionForm(request.POST, instance=s)
@@ -127,8 +127,8 @@ def sancion_persona(request, id_persona, id=None):
         else:
             return render(request, 'front/sanciones.html', {'form': form, 'persona':persona})
     else:
-        
-        return render(request, 'front/sanciones.html', {'form': form, 'persona':persona})
+        form = SancionForm()
+        return render(request, 'front/sancion.html', {'form': form, 'persona':persona})
 
 @login_required
 def sanciones_persona(request, persona_id):
