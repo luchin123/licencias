@@ -3,7 +3,20 @@
 {% block content %}
     <div class="row">
         <div class="col-md-12">
-            <h1>Crear Sanciones para {{persona}} ({{persona.dni}})</h1>
+            {% if form.instance.id != None %}
+                <h1>Editar sancion para {{persona}} ({{persona.dni}})
+                    <span class="small pull-right">
+                        <a href="{% url 'front:sanciones_persona' persona.id %}" class="btn btn-primary">Ver todas sus sanciones</a>
+                        <a href="{% url 'front:sancion_persona' id_persona=persona.id id=0 %}" class="btn btn-primary">Crear nueva sanci{on</a>
+                    </span>
+                </h1>
+            {% else %}
+                <h1>Crear Sanciones para {{persona}} ({{persona.dni}})
+                    <span class="small pull-right">
+                        <a href="{% url 'front:sanciones_persona' persona.id %}" class="btn btn-primary">Ver todas sus sanciones</a>
+                    </span>
+                </h1>
+            {% endif %}
             <form action="" method="post">
                 {% for field in  form %}
                     <div class="form-group">
