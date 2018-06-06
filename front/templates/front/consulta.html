@@ -13,7 +13,6 @@
     <table class="table table bordered table-striped">
     <thead>
         <tr>
-            <th>Dni</th>
             <th>Persona</th>
             <th>Autoridad</th>
             <th>Clase</th>
@@ -28,7 +27,6 @@
     <tbody>
         {% for licencia in licencias %}
             <tr>
-                <td>{{ licencia.persona.dni }}</td>
                 <td>{{ licencia.persona }}</td>
                 <td>{{ licencia.autoridad }}</td>
                 <td>{{ licencia.clase }}</td>

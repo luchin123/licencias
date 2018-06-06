@@ -10,6 +10,7 @@ urlpatterns = [
     url(r'^$', views.index, name = 'index'),
     url(r'^login/$', views.the_login, name = 'login'),
     url(r'^consulta/$', views.consulta, name = 'consulta'),
+    url(r'^consultas/json/$', views.consulta_json, name = 'consulta_json'),
     url(r'^licencia/$', views.licencia, name = 'licencia'),
     url(r'^licencia/(?P<id>.*)$', views.licencia, name = 'licencia'),
     url(r'^personas/$', views.personas, name = 'personas'),
