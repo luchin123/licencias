@@ -34,7 +34,7 @@
                 <td>{{ persona.donacion }}</td>
                 <td>{{ persona.foto }}</td>
                 <td><i class="fa fa-edit"><a href="{% url 'front:persona'  persona.id %}">Editar</a></i></td>
-                <td><i class="fa fa-automobile"><a href="{% url 'front:sanciones_persona'  persona.id %}">Sanciones</a></i></td>
+                <td><i class="fa fa-automobile"><a href="{% url 'front:sanciones_persona' persona.id %}">Sanciones</a></i></td>
             </tr>
         {% empty %}
             <tr>

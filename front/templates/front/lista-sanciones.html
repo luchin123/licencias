@@ -35,7 +35,7 @@
                 <td>{{ sancion.fecha_expedicion }}</td>
                 <td>{{ sancion.fecha_revalidacion }}</td>
                 <td>{{ sancion.restricciones }}</td>
-                <td>Editar</td>
+                <td><a href="{% url 'front:sancion_persona' id_persona=persona.id id=sancion.id %}">Editar</a></td>
             </tr>
         {% empty %}
             <tr>

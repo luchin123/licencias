@@ -117,7 +117,11 @@ def sancion_persona(request, id_persona, id=None):
         else:
             return render(request, 'front/sanciones.html', {'form': form, 'persona':persona})
     else:
-        form = SancionForm()
+        if id is None:
+            form = SancionForm()
+        else:
+            s = Sancion.objects.get(id=id)
+            form = SancionForm(instance=s)
         return render(request, 'front/sanciones.html', {'form': form, 'persona':persona})
 
 @login_required
