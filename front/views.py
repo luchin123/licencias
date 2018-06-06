@@ -129,7 +129,7 @@ def sancion_persona(request, id_persona, id):
                 messages.warning(request, 'Se ha actualizado una sanción para %s.' % persona)
             return HttpResponseRedirect(reverse('front:personas'))
         else:
-            return render(request, 'front/sanciones.html', {'form': form, 'persona':persona})
+            return render(request, 'front/sancion.html', {'form': form, 'persona':persona})
     else:
         return render(request, 'front/sancion.html', {'form': form, 'persona':persona})
 
