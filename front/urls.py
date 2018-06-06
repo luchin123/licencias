@@ -15,7 +15,7 @@ urlpatterns = [
     url(r'^lista/$', views.lista, name = 'lista'),
     url(r'^persona/$', views.persona, name = 'persona'),
     url(r'^persona/(?P<id>.*)$', views.persona, name = 'persona'),
-    url(r'^sanciones/(?P<id_persona>.*)/(?P<id>.*)$', views.sancion, name = 'sanciones'),
+    url(r'^sancion/(?P<id_persona>.*)/(?P<id>.*)$', views.sancion, name = 'sancion'),
     url(r'^lista-sanciones/(?P<persona_id>.*)$', views.listaS, name = 'lista_sanciones'),
 
 ]

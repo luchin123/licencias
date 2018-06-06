@@ -49,7 +49,7 @@ def lista(request):
 @login_required
 def listaS(request,persona_id):
     persona=Persona.objects.get(id=persona_id)
-    sanciones = Sancion.objects.filter(persona=persona)
+    sanciones=Sancion.objects.filter(persona=persona)
     return render(request, 'front/lista-sanciones.html', {'sanciones': sanciones, 'persona':persona})
 
 
@@ -111,7 +111,7 @@ def persona(request, id=None):
         return render(request, 'front/persona.html', {'form': form})
 
 @login_required
-def sancion(request,id_persona ,id=None):
+def sancion(request,id_persona,id=None):
     persona=Persona.objects.get(id=id_persona)
     if request.method == 'POST':
         form = SancionForm(request.POST)
