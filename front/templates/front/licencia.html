@@ -3,12 +3,20 @@
 {% block content %}
     <div class="row">
         <div class="col-md-12">
-            <h1>Crear licencia
+            {% if form.instance.id != None %}
+                <h1>Editar Licencia
+                    <span class="small pull-right">
+                        <a href="{% url 'front:licencia' %}" class="btn btn-primary">Crear Licencia</a>
+                        <a href="{% url 'front:consulta' %}" class="btn btn-primary">Ver todas las Licencias</a>
+                    </span>
+                </h1>
+            {% else %}
+                <h1>Crear Licencia
                 <span class="small pull-right">
-                    <a href="{% url 'front:consulta' %}" class="btn btn-primary">Ver todas las licencias</a>
+                    <a href="{% url 'front:consulta' %}" class="btn btn-primary">Ver todas las Licencias</a>
                 </span>
             </h1>
-
+            {% endif %}
             <form action="" method="post">
                 <div class="form-group">
                     <label for="">Persona:</label>

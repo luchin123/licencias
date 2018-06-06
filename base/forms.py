@@ -93,15 +93,15 @@ class SancionForm(ModelForm):
             }),
             'numero_papeleta': TextInput(attrs={
                 'class': 'form-control',
-                'placeholder': 'Apellidos',
+                'placeholder': 'Numero Papeleta',
             }),
             'entidad': TextInput(attrs={
                 'class': 'form-control',
-                'placeholder': 'DNI',
+                'placeholder': 'Entidad',
             }),
             'distrito': TextInput(attrs={
                 'class': 'form-control',
-                'placeholder': 'Direccion',
+                'placeholder': 'Distrito',
             }),
             'infracion': TextInput(attrs={
                 'class': 'form-control',
@@ -109,11 +109,11 @@ class SancionForm(ModelForm):
             }),
             'grado_alcohol': TextInput(attrs={
                 'class': 'form-control',
-                'placeholder': 'Donacion',
+                'placeholder': 'Grado de Alcohol',
             }),
             'carnet_policial': TextInput(attrs={
                 'class': 'form-control',
-                'placeholder': 'Donacion',
+                'placeholder': 'Carnet',
             }),
           
           

@@ -28,13 +28,14 @@
         {% for sancion in sanciones %}
             <tr>
                 <td>{{ sancion.persona }}</td>
-                <td>{{ sancion.autoridad }}</td>
-                <td>{{ sancion.clase }}</td>
-                <td>{{ sancion.categoria }}</td>
-                <td>{{ sancion.numero_licencia }}</td>
-                <td>{{ sancion.fecha_expedicion }}</td>
-                <td>{{ sancion.fecha_revalidacion }}</td>
-                <td>{{ sancion.restricciones }}</td>
+                <td>{{ sancion.fecha_infracion }}</td>
+                <td>{{ sancion.numero_papeleta }}</td>
+                <td>{{ sancion.entidad }}</td>
+                <td>{{ sancion.distrito }}</td>
+                <td>{{ sancion.infracion }}</td>
+                <td>{{ sancion.grado_alcohol }}</td>
+                <td>{{ sancion.retencion }}</td>
+                <td>{{ sancion.carnet_policial }}</td>
                 <td><a href="{% url 'front:sancion_persona' id_persona=persona.id id=sancion.id %}">Editar</a></td>
             </tr>
         {% empty %}
