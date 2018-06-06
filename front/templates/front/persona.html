@@ -7,13 +7,13 @@
                 <h1>Editar Persona
                     <span class="small pull-right">
                         <a href="{% url 'front:persona' %}" class="btn btn-primary">Crear persona</a>
-                        <a href="{% url 'front:lista' %}" class="btn btn-primary">Ver todas las Personas</a>
+                        <a href="{% url 'front:personas' %}" class="btn btn-primary">Ver todas las Personas</a>
                     </span>
                 </h1>
             {% else %}
                 <h1>Crear Persona
                 <span class="small pull-right">
-                    <a href="{% url 'front:lista' %}" class="btn btn-primary">Ver todas las Personas</a>
+                    <a href="{% url 'front:personas' %}" class="btn btn-primary">Ver todas las Personas</a>
                 </span>
             </h1>
             {% endif %}

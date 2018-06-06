@@ -42,16 +42,9 @@ def index(request):
     return render(request, 'front/index.html')
 
 @login_required
-def lista(request):
+def personas(request):
     personas = Persona.objects.all()
-    return render(request, 'front/lista.html', {'personas': personas})
-
-@login_required
-def listaS(request,persona_id):
-    persona=Persona.objects.get(id=persona_id)
-    sanciones=Sancion.objects.filter(persona=persona)
-    return render(request, 'front/lista-sanciones.html', {'sanciones': sanciones, 'persona':persona})
-
+    return render(request, 'front/personas.html', {'personas': personas})
 
 @login_required
 def licencia(request, id=None):
@@ -100,7 +93,7 @@ def persona(request, id=None):
                 messages.warning(request, 'Se ha creado una Persona.')
             else:
                 messages.warning(request, 'Se ha Actualizado una Persona.')
-            return HttpResponseRedirect(reverse('front:lista'))
+            return HttpResponseRedirect(reverse('front:personas'))
         else:
             return render(request, 'front/persona.html', {'form': form})
     else:
@@ -111,7 +104,7 @@ def persona(request, id=None):
         return render(request, 'front/persona.html', {'form': form})
 
 @login_required
-def sancion(request,id_persona,id=None):
+def sancion_persona(request, id_persona, id=None):
     persona=Persona.objects.get(id=id_persona)
     if request.method == 'POST':
         form = SancionForm(request.POST)
@@ -120,10 +113,15 @@ def sancion(request,id_persona,id=None):
             sancion.persona=persona
             sancion.save()
             messages.warning(request, 'Se ha creado una Sancion para %s.' % persona)
-            return HttpResponseRedirect(reverse('front:lista'))
+            return HttpResponseRedirect(reverse('front:personas'))
         else:
-            return render(request, 'front/sanciones.html', {'form': form,'persona':persona})
+            return render(request, 'front/sanciones.html', {'form': form, 'persona':persona})
     else:
         form = SancionForm()
-        return render(request, 'front/sanciones.html', {'form': form,'persona':persona})
+        return render(request, 'front/sanciones.html', {'form': form, 'persona':persona})
 
+@login_required
+def sanciones_persona(request, persona_id):
+    persona=Persona.objects.get(id=persona_id)
+    sanciones=Sancion.objects.filter(persona=persona)
+    return render(request, 'front/lista-sanciones.html', {'sanciones': sanciones, 'persona':persona})

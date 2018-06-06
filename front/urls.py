@@ -12,10 +12,10 @@ urlpatterns = [
     url(r'^consulta/$', views.consulta, name = 'consulta'),
     url(r'^licencia/$', views.licencia, name = 'licencia'),
     url(r'^licencia/(?P<id>.*)$', views.licencia, name = 'licencia'),
-    url(r'^lista/$', views.lista, name = 'lista'),
+    url(r'^personas/$', views.personas, name = 'personas'),
     url(r'^persona/$', views.persona, name = 'persona'),
     url(r'^persona/(?P<id>.*)$', views.persona, name = 'persona'),
-    url(r'^sancion/(?P<id_persona>.*)/(?P<id>.*)$', views.sancion, name = 'sancion'),
-    url(r'^lista-sanciones/(?P<persona_id>.*)$', views.listaS, name = 'lista_sanciones'),
+    url(r'^sancion/(?P<id_persona>.*)/(?P<id>.*)$', views.sancion_persona, name = 'sancion_persona'),
+    url(r'^sanciones/(?P<persona_id>.*)$', views.sanciones_persona, name = 'sanciones_persona'),
 
 ]
