@@ -106,22 +106,28 @@ def persona(request, id=None):
 @login_required
 def sancion_persona(request, id_persona, id=None):
     persona=Persona.objects.get(id=id_persona)
+    s = None
+    if id is not None
+        s = Sancion.objects.get(id=id)
     if request.method == 'POST':
-        form = SancionForm(request.POST)
+        if is None:
+            form = SancionForm(request.POST)
+        else:
+            form = SancionForm(request.POST, instance=s)
+
         if form.is_valid():
             sancion = form.save(commit=False)
             sancion.persona=persona
             sancion.save()
-            messages.warning(request, 'Se ha creado una Sancion para %s.' % persona)
+            if s is None:
+                messages.warning(request, 'Se ha creado una sanción para %s.' % persona)
+            else:
+                messages.warning(request, 'Se ha actualizado una sanción para %s.' % persona)
             return HttpResponseRedirect(reverse('front:personas'))
         else:
             return render(request, 'front/sanciones.html', {'form': form, 'persona':persona})
     else:
-        if id is None:
-            form = SancionForm()
-        else:
-            s = Sancion.objects.get(id=id)
-            form = SancionForm(instance=s)
+        
         return render(request, 'front/sanciones.html', {'form': form, 'persona':persona})
 
 @login_required
