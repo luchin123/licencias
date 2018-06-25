@@ -155,6 +155,7 @@ def consulta_json(request):
     for licencia in licencias:
 
         links = crear_enlace(reverse('front:licencia', args=[licencia.id]), 'success', 'Ver o Editar', 'edit')
+        links += crear_enlace(reverse('reporte:licencia_print', args=[licencia.id]), 'success', 'Imprimir', 'print')
 
         obj = OrderedDict({
             '0': licencia.persona.dni,
