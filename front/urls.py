@@ -14,6 +14,7 @@ urlpatterns = [
     url(r'^licencia/$', views.licencia, name = 'licencia'),
     url(r'^licencia/(?P<id>.*)$', views.licencia, name = 'licencia'),
     url(r'^personas/$', views.personas, name = 'personas'),
+    url(r'^personas/json/$', views.personas_json, name = 'personas_json'),
     url(r'^persona/$', views.persona, name = 'persona'),
     url(r'^persona/(?P<id>.*)$', views.persona, name = 'persona'),
     url(r'^sancion/(?P<id_persona>.*)/(?P<id>.*)$', views.sancion_persona, name = 'sancion_persona'),

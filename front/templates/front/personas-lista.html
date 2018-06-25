@@ -1,0 +1,74 @@
+{% extends "front/base.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Personas
+                <span class="small pull-right">
+                    <a href="{% url 'front:persona' %}" class="btn btn-primary btn-sm">Crear Persona</a>
+                    <button class="btn btn-default btn-sm reset"><i class="fa fa-filter"></i> Quitar Filtros</button>
+                </span>
+            </h1>
+        </div>
+    </div>
+    <table class="table table bordered table-striped" id="consultas">
+        <thead>
+            <tr>
+                <th>Nombres</th>
+                <th>Apellidos</th>
+                <th>Fecha Nacimiento</th>
+                <th>Direccion</th>
+                <th>Donacion</th>
+                <th>Foto</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+        </tbody>
+        <tfoot>
+            <tr>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+                <td>4</td>
+                <td>5</td>
+                <td>6</td>
+                <td>7</td>
+            </tr>
+            <tr>
+              <th colspan="9" class="ts-pager form-horizontal">
+                <button type="button" class="btn btn-xs first"><i class="icon-step-backward glyphicon glyphicon-step-backward"></i></button>
+                <button type="button" class="btn btn-xs prev"><i class="icon-arrow-left glyphicon glyphicon-backward"></i></button>
+                <span class="pagedisplay"></span> <!-- this can be any element, including an input -->
+                <button type="button" class="btn btn-xs next"><i class="icon-arrow-right glyphicon glyphicon-forward"></i></button>
+                <button type="button" class="btn btn-xs last"><i class="icon-step-forward glyphicon glyphicon-step-forward"></i></button>
+                <select class="pagesize input-mini" title="Elementos a mostrar ">
+                  <option selected="selected" value="10">10</option>
+                  <option value="20">20</option>
+                  <option value="30">30</option>
+                  <option value="40">40</option>
+                  <option value="9999">Todos</option>
+                </select>
+                <select class="pagenum input-mini" title="Número de página"></select>
+              </th>
+            </tr>
+      </tfoot>
+    </table>
+{% endblock content %}
+
+{% block title %}Personas{% endblock title %}
+
+
+{% block js %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.28.0/js/jquery.tablesorter.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.28.0/js/jquery.tablesorter.widgets.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.28.0/js/widgets/widget-filter-formatter-jui.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.28.0/js/extras/jquery.tablesorter.pager.min.js"></script>
+<script src="{% static "front/js/personas.js" %}"></script>
+{% endblock js %}
+
+{% block css %}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.28.0/css/theme.bootstrap.min.css">
+{% endblock css %}
