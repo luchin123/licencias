@@ -204,7 +204,7 @@ def personas_json(request):
 
     data = {
         'headers': [
-            'Nombres', 'Apellidos', 'Fecha Nacimiento', 'Direccion', 'Donacion', 'Foto', 'Acciones'
+            'Nombres', 'Apellidos', 'Fecha Nacimiento', 'Direccion', 'Donacion', 'Acciones'
         ]
 
     }
@@ -235,9 +235,6 @@ def personas_json(request):
     if 'filter[4]' in filters:
         personas = personas.filter(donacion = request.GET.get('filter[4]'))
 
-    if 'filter[5]' in filters:
-        personas = personas.filter(foto = request.GET.get('filter[5]'))
-
     
 
     if 'column[0]' in cols:
@@ -260,10 +257,6 @@ def personas_json(request):
         signo = '' if request.GET.get('column[4]') == '0' else '-'
         personas = personas.order_by('%sdonacion' % signo)
 
-    if 'column[5]' in cols:
-        signo = '' if request.GET.get('column[5]') == '0' else '-'
-        personas = personas.order_by('%sfoto' % signo)
-
 
     total_rows = personas.count()
 
@@ -281,8 +274,7 @@ def personas_json(request):
             '2': persona.fecha_nacimiento.strftime('%d/%b/%Y'),
             '3': persona.direccion,
             '4': persona.Donacion,
-            '5': persona.foto,
-            '6': links,
+            '5': links,
         })
         rows.append(obj)
 
@@ -391,7 +383,7 @@ def sanciones_persona(request, persona_id):
     sanciones=Sancion.objects.filter(persona=persona)
     return render(request, 'front/sanciones-lista.html', {'sanciones': sanciones, 'persona':persona})
 
-def personas_json(request):
+def sanciones_json(request):
     filters = []
     cols = []
     for k in request.GET:
