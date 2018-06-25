@@ -22,4 +22,5 @@ urlpatterns = [
 
     url(r'^', include('base.urls')),
     url(r'^', include('front.urls')),
+    url(r'^', include('reporte.urls')),
 ]
