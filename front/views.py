@@ -389,7 +389,7 @@ def sanciones_persona(request, persona_id):
 def sanciones_persona(request, persona_id):
     persona=Persona.objects.get(id=persona_id)
     sanciones=Sancion.objects.filter(persona=persona)
-    return render(request, 'front/sanciones-lista.html',, {'sanciones': sanciones, 'persona':persona})
+    return render(request, 'front/sanciones-lista.html', {'sanciones': sanciones, 'persona':persona})
 
 def personas_json(request):
     filters = []
@@ -408,7 +408,7 @@ def personas_json(request):
 
     data = {
         'headers': [
-            'Persona', 'Fecha de Infraccion', 'Numero Papeleta', 'Entidad', 'Distrito', 'Infracion','Grado Alcohol','Retencion','Carnet Policial', 'Acciones'
+            'Persona', 'Fecha de Infraccion', 'Número Papeleta', 'Entidad', 'Distrito', 'Infracion','Grado Alcohol','Retencion','Carnet Policial', 'Acciones'
         ]
 
     }
@@ -494,15 +494,15 @@ def personas_json(request):
     rows = []
     for sancion in sanciones:
 
-        links = crear_enlace(reverse('front:sancion', args=[sancion.id]), 'success', 'Ver o Editar', 'edit')
+        links = crear_enlace(reverse('front:sanciones_persona', args=[sancion.id]), 'success', 'Ver o Editar', 'edit')
 
         obj = OrderedDict({
-            '0': sancion.persona,
-            '1': sancion.fecha_infraccion.strftime('%d/%b/%Y'),
+            '0': sancion.persona.nombres,
+            '1': sancion.fecha_infracion.strftime('%d/%b/%Y'),
             '2': sancion.numero_papeleta,
             '3': sancion.entidad,
             '4': sancion.distrito,
-            '5': sancion.infraccion,
+            '5': sancion.infracion,
             '6': sancion.grado_alcohol,
             '7': sancion.retencion,
             '8': sancion.carnet_policial,
