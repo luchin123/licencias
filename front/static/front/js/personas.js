@@ -25,6 +25,12 @@
                 from : 'Desde',
                 to   : 'Hasta'
             },
+            filter_functions: {
+                4: {
+                    'Si': function(e, n, f, i, $r) { return 'Si'},
+                    'No': function(e, n, f, i, $r) { return 'No'},
+                },
+            }
         }
       })
       .tablesorterPager({
