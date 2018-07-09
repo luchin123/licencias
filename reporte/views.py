@@ -169,9 +169,14 @@ class ImpresionLicencia2:
         firma = str(licencia.autoridad.firma_autoridad)
         canvas.drawImage(firma, 52 * mm, 0.7 * cm, width = (2.6 * cm), height = (1 * cm))
 
-        barcode = code93.Standard93(licencia.persona.dni, barWidth = 0.55, barHeight = 7.5 * mm, stop=1)
-        w, h = barcode.wrap(doc.width, doc.topMargin)
-        barcode.drawOn(canvas, 50 * mm, 3 * cm)
+        size = 65.
+        qr_code = qr.QrCodeWidget(licencia.persona.dni)
+        bounds = qr_code.getBounds()
+        width = bounds[2] - bounds[0]
+        height = bounds[3] - bounds[1]
+        d = Drawing(size, size, transform=[size/width,0,0,size/height,0,0])
+        d.add(qr_code)
+        renderPDF.draw(d, canvas, 54 * mm, 22 * mm)
         
 
         canvas.restoreState()
