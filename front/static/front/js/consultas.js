@@ -46,7 +46,12 @@
                     '1': function(e, n, f, i, $r) { return '1'},
                     '2': function(e, n, f, i, $r) { return '2'},
                     '3': function(e, n, f, i, $r) { return '3'},
-                }
+                },
+                8: {
+                    'Activo': function(e, n, f, i, $r) { return 'Activo'},
+                    'Vencido': function(e, n, f, i, $r) { return 'Vencido'},
+                    'Sancionado': function(e, n, f, i, $r) { return 'Sancionado'},
+                },
             }
         }
       })

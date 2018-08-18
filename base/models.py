@@ -38,6 +38,11 @@ class Licencia(models.Model):
         ('2', '2'),
         ('3', '3'),
     )
+    ESTADO = (
+        ('Activo', 'Activo'),
+        ('Vencido', 'Vencido'),
+        ('Sancionado', 'Sancionado'),
+    )
     persona = models.ForeignKey(Persona)
     autoridad = models.ForeignKey(Autoridad)
     clase = models.CharField(max_length=1, choices=CLASES, default='A')
@@ -46,8 +51,16 @@ class Licencia(models.Model):
     fecha_expedicion = models.DateField()
     fecha_revalidacion = models.DateField()
     restricciones = models.TextField(blank=True, null=True, default='Ninguno')
+    estado = models.CharField(max_length=10, choices=ESTADO, default='Activo')
 
+import datetime
 class Sancion(models.Model):
+    SANCIONES = (
+        ('Innabilitacion', 'Innabilitacion'),
+        ('Suspencion', 'Suspencion'),
+        ('Sentencia', 'Sentencia'),
+        ('Multa', 'Multa'),
+    )
     persona = models.ForeignKey(Persona)
     fecha_infracion = models.DateField()
     numero_papeleta = models.IntegerField()
@@ -55,7 +68,10 @@ class Sancion(models.Model):
     distrito = models.CharField(max_length=255)
     infracion = models.CharField(max_length=255)
     grado_alcohol = models.CharField(max_length=255)
-    retencion = models.BooleanField(default=True)
+    retencion = models.CharField(max_length=15, choices=SANCIONES, default='Multa')
+    observacion = models.CharField(max_length=255, default='Ninguna')
+    fecha_inicio = models.DateField(default=datetime.datetime.now, blank=True)
+    fecha_fin = models.DateField(default=datetime.datetime.now, blank=True)
     carnet_policial = models.IntegerField()
 
     class Meta:

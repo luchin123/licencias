@@ -63,7 +63,7 @@ def consulta_json(request):
 
     data = {
         'headers': [
-            'DNI', 'Persona', 'Autoridad', 'Clase', 'Categoria', 'Nro', 'Fecha Exp', 'Fecha Rev', 'Acciones'
+            'DNI', 'Persona', 'Autoridad', 'Clase', 'Categoria', 'Nro', 'Fecha Exp', 'Fecha Rev','Estado', 'Acciones'
         ]
 
     }
@@ -113,7 +113,8 @@ def consulta_json(request):
             inicial = timestamp_a_fecha(str_fecha[:10], '%Y-%m-%d')
             final = timestamp_a_fecha(str_fecha[-13:][:10], '%Y-%m-%d')
             licencias = licencias.distinct().filter(fecha_revalidacion__range = (inicial, final))
-    
+    if 'filter[8]' in filters:
+        licencias = licencias.filter(estado = request.GET.get('filter[8]'))
 
     if 'column[0]' in cols:
         signo = '' if request.GET.get('column[0]') == '0' else '-'
@@ -143,9 +144,12 @@ def consulta_json(request):
         signo = '' if request.GET.get('column[6]') == '0' else '-'
         licencias = licencias.order_by('%sfecha_expedicion' % signo)
 
+    if 'column[7]' in cols:
+        signo = '' if request.GET.get('column[7]') == '0' else '-'
+        licencias = licencias.order_by('%sfecha_revalidacion' % signo)
     if 'column[8]' in cols:
         signo = '' if request.GET.get('column[8]') == '0' else '-'
-        licencias = licencias.order_by('%sfecha_revalidacion' % signo)
+        licencias = licencias.order_by('%sestado' % signo)
 
     total_rows = licencias.count()
 
@@ -167,7 +171,8 @@ def consulta_json(request):
             '5': licencia.numero_licencia,
             '6': licencia.fecha_expedicion.strftime('%d/%b/%Y'),
             '7': licencia.fecha_revalidacion.strftime('%d/%b/%Y'),
-            '8': links,
+            '8': licencia.estado,
+            '9': links,
         })
         rows.append(obj)
 

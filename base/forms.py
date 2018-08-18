@@ -74,10 +74,25 @@ class LicenciaForm(ModelForm):
             'restricciones': Textarea(attrs={
                 'class': 'form-control',
             }),
+            'estado': Select(attrs={
+                'class': 'form-control',
+            }),
         }
 
 class SancionForm(ModelForm):
     fecha_infracion = DateField(
+        input_formats=settings.DATE_INPUT_FORMATS,
+        widget=TextInput(attrs={
+            'class': 'form-control datepicker',
+        })
+    )
+    fecha_inicio = DateField(
+        input_formats=settings.DATE_INPUT_FORMATS,
+        widget=TextInput(attrs={
+            'class': 'form-control datepicker',
+        })
+    )
+    fecha_fin = DateField(
         input_formats=settings.DATE_INPUT_FORMATS,
         widget=TextInput(attrs={
             'class': 'form-control datepicker',
@@ -101,9 +116,16 @@ class SancionForm(ModelForm):
             }),
             'distrito': TextInput(attrs={
                 'class': 'form-control',
-                'placeholder': 'Distrito',
+                'placeholder': 'Comisaria',
             }),
             'infracion': TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'infraccion',
+            }),
+            'retencion': Select(attrs={
+                'class': 'form-control',
+            }),
+            'observacion': TextInput(attrs={
                 'class': 'form-control',
                 'placeholder': 'infraccion',
             }),

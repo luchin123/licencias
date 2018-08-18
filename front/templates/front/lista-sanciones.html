@@ -20,7 +20,8 @@
             <th>Distrito</th>
             <th>Infraccion</th>
             <th>Grado de Alcohol</th>
-            <th>Retencion</th>
+            <th>Sancion</th>
+            <th>Observacion</th>
             <th>Carnet Policial</th>
         </tr>
     </thead>
@@ -35,6 +36,7 @@
                 <td>{{ sancion.infracion }}</td>
                 <td>{{ sancion.grado_alcohol }}</td>
                 <td>{{ sancion.retencion }}</td>
+                <td>{{ sancion.observacion }}</td>
                 <td>{{ sancion.carnet_policial }}</td>
                 <td><a href="{% url 'front:sancion_persona' id_persona=persona.id id=sancion.id %}">Editar</a></td>
             </tr>
