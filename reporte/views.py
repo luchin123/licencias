@@ -11,7 +11,7 @@ from reportlab.platypus import SimpleDocTemplate, Paragraph, Table, PageBreak
 from reportlab.platypus import PageTemplate, BaseDocTemplate, NextPageTemplate, Frame
 from reportlab.lib.styles import ParagraphStyle
 from reportlab.lib.enums import TA_CENTER, TA_LEFT
-from reportlab.lib.units import mm, cm
+from reportlab.lib.units import mm, cm, inch
 from reportlab.graphics.shapes import Drawing
 from reportlab.graphics import renderPDF
 from reportlab.pdfgen import canvas
@@ -332,19 +332,19 @@ class ImpresionLicencia3:
         foto = str(self.licencia.persona.firma)
         canvas.drawImage(foto, 51 * mm, 2.5 * cm, width = (2.6 * cm), height = (1 * cm))
 
-        categoria = Paragraph('Categoria', negrita_custom(8.5, TA_LEFT))
+        categoria = Paragraph(u'Categoría', negrita_custom(8.5, TA_LEFT))
         w, h = categoria.wrap(doc.width, doc.topMargin)
-        categoria.drawOn(canvas, 50 * mm, 16.9 * mm)
+        categoria.drawOn(canvas, 52 * mm, 16.9 * mm)
 
         categoria = Paragraph(self.licencia.clase, normal_custom(8.5, TA_LEFT))
         w, h = categoria.wrap(doc.width, doc.topMargin)
-        categoria.drawOn(canvas, 53 * mm, 12.5 * mm)
+        categoria.drawOn(canvas, 56 * mm, 12.5 * mm)
 
         categoria = Paragraph(self.licencia.categoria, normal_custom(8.5, TA_LEFT))
         w, h = categoria.wrap(doc.width, doc.topMargin)
-        categoria.drawOn(canvas, 50 * mm, 12.5 * mm)
+        categoria.drawOn(canvas, 53 * mm, 12.5 * mm)
 
-        categoria = Paragraph('Fecha Revalidacion', negrita_custom(8.5, TA_LEFT))
+        categoria = Paragraph(u'F. Revalidación', negrita_custom(8.5, TA_LEFT))
         w, h = categoria.wrap(doc.width, doc.topMargin)
         categoria.drawOn(canvas, 52 * mm, 8.2 * mm)
 
@@ -382,16 +382,17 @@ class ImpresionLicencia3:
 
     def print_licencia(self):
         buffer = self.buffer
-
+        #topMargin = 13 * mm,leftMargin = 23 * mm,rightMargin = 3 * mm,bottomMargin = 1 * mm,showBoundary = 1
         pHeight, pWidth = self.pagesize
-        myFrame = Frame(0, 0, pHeight, pWidth, id='myFrame')
+        frame1 = Frame(24 * mm, -13 * mm, pHeight, pWidth, id='frame1')
+        frame2 = Frame(4 * mm, -2 * mm, pHeight, pWidth, id='frame2')
 
         primera_hoja = PageTemplate(id='primera_hoja',
-                                            frames=[myFrame],
+                                            frames=[frame1],
                                             onPage=self.primera_hoja_layout)
 
         segunda_hoja = PageTemplate(id='segunda_hoja',
-                                     frames=[myFrame],
+                                     frames=[frame2],
                                      onPage=self.segunda_hoja_layout)
 
         elements = []
@@ -414,7 +415,7 @@ class ImpresionLicencia3:
         p = Paragraph(str(self.licencia.numero_licencia), normal_custom(8.5, TA_LEFT))
         elements.append(p)
 
-        p = Paragraph('Fecha Expedicion', negrita_custom(8.5, TA_LEFT))
+        p = Paragraph(u'F. Expedición', negrita_custom(8.5, TA_LEFT))
         elements.append(p)
 
         p = Paragraph(self.licencia.fecha_expedicion.strftime('%d/%b/%Y'), normal_custom(8.5, TA_LEFT))
@@ -442,7 +443,7 @@ class ImpresionLicencia3:
         p = Paragraph(self.licencia.persona.direccion, normal_custom(8.5, TA_LEFT))
         elements.append(p)
 
-        p = Paragraph('Donacion de Organos', negrita_custom(8.5, TA_LEFT))
+        p = Paragraph(u'Donación de Organos', negrita_custom(8.5, TA_LEFT))
         elements.append(p)
 
         p = Paragraph('Si' if self.licencia.persona.donacion else 'No', normal_custom(8.5, TA_LEFT))
@@ -455,12 +456,8 @@ class ImpresionLicencia3:
         elements.append(p)
 
         doc = BaseDocTemplate(buffer,
-                              pagesize = self.pagesize,
-                              topMargin = 13 * mm,
-                              leftMargin = 23 * mm,
-                              rightMargin = 3 * mm,
-                              bottomMargin = 1 * mm,
-                              showBoundary = 1)
+                              pagesize = self.pagesize)
+
 
         doc.addPageTemplates([primera_hoja, segunda_hoja])
 
