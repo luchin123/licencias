@@ -39,11 +39,11 @@ class Licencia(models.Model):
         ('3', '3'),
     )
     ESTADO = (
-        ('Activo', 'Activo'),
-        ('Vencido', 'Vencido'),
-        ('Sancionado', 'Sancionado'),
+        ('A', 'Activo'),
+        ('V', 'Vencido'),
+        ('S', 'Sancionado'),
     )
-    persona = models.ForeignKey(Persona)
+    persona = models.OneToOneField(Persona)
     autoridad = models.ForeignKey(Autoridad)
     clase = models.CharField(max_length=1, choices=CLASES, default='A')
     categoria = models.CharField(max_length=1, choices=CATEGORIAS, default='1')
@@ -51,15 +51,15 @@ class Licencia(models.Model):
     fecha_expedicion = models.DateField()
     fecha_revalidacion = models.DateField()
     restricciones = models.TextField(blank=True, null=True, default='Ninguno')
-    estado = models.CharField(max_length=10, choices=ESTADO, default='Activo')
+    estado = models.CharField(max_length=1, choices=ESTADO, default='Activo')
 
 import datetime
 class Sancion(models.Model):
     SANCIONES = (
-        ('Innabilitacion', 'Innabilitacion'),
-        ('Suspencion', 'Suspencion'),
-        ('Sentencia', 'Sentencia'),
-        ('Multa', 'Multa'),
+        ('I', u'Innabilitación'),
+        ('S', u'Suspensión'),
+        ('Z', 'Sentencia'),
+        ('M', 'Multa'),
     )
     persona = models.ForeignKey(Persona)
     fecha_infracion = models.DateField()
@@ -68,7 +68,7 @@ class Sancion(models.Model):
     distrito = models.CharField(max_length=255)
     infracion = models.CharField(max_length=255)
     grado_alcohol = models.CharField(max_length=255)
-    retencion = models.CharField(max_length=15, choices=SANCIONES, default='Multa')
+    retencion = models.CharField(max_length=1, choices=SANCIONES, default='Multa')
     observacion = models.CharField(max_length=255, default='Ninguna')
     fecha_inicio = models.DateField(default=datetime.datetime.now, blank=True)
     fecha_fin = models.DateField(default=datetime.datetime.now, blank=True)

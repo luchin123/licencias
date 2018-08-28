@@ -11,14 +11,15 @@
         </div>
     </div>
     <ul class="list-group">
-        <li class="list-group-item">Consulta del Adminsitrado: {{ sancion.persona }}</li>
-        <li class="list-group-item">Numero Documento de Identidad: {{ persona.dni }}</li>
-        <li class="list-group-item">Numero de Licencia: {{ licencias.numero_licencia }}</li>
-        <li class="list-group-item">Categoria: {{ licencias.categoria }}</li>
-        <li class="list-group-item">Vigente Hasta: {{ licencias.fecha_revalidacion }}</li>
-        <li class="list-group-item">Estado de Licencia: Activa</li>
+        <li class="list-group-item text-center"><strong>Consulta del Adminsitrado: </strong> {{ persona }}</li>
+        <li class="list-group-item text-center"><strong>Numero Documento de Identidad: </strong> {{ persona.dni }}</li>
+        <li class="list-group-item text-center"><strong>Numero de Licencia: </strong> {{ persona.licencia.numero_licencia }}</li>
+        <li class="list-group-item text-center"><strong>Categoria: </strong> {{ persona.licencia.categoria }}</li>
+        <li class="list-group-item text-center"><strong>Clase: </strong> {{ persona.licencia.clase }}</li>
+        <li class="list-group-item text-center"><strong>Vigente Hasta: </strong> {{ persona.licencia.fecha_revalidacion }}</li>
+        <li class="list-group-item text-center"><strong>Estado de Licencia: </strong>{{ persona.licencia.get_estado_display }}</li>
     </ul>
-    <table class="table table bordered table-striped">
+    <table class="table table-bordered table-striped">
     <thead>
         <tr>
             <th>Persona</th>
@@ -34,7 +35,7 @@
         </tr>
     </thead>
     <tbody>
-        {% for sancion in sanciones %}
+        {% for sancion in persona.sancion_set.all %}
             <tr>
                 <td>{{ sancion.persona }}</td>
                 <td>{{ sancion.fecha_infracion }}</td>

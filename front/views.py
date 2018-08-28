@@ -12,7 +12,7 @@ from base.models import Licencia
 from base.models import Persona, Sancion
 from base.forms import PersonaForm, LicenciaForm, SancionForm
 
-from front.utils import crear_enlace, timestamp_a_fecha
+from front.utils import crear_enlace, timestamp_a_fecha, sancionar_persona
 
 from collections import OrderedDict
 import json
@@ -368,6 +368,7 @@ def sancion_persona(request, id_persona, id):
             sancion = form.save(commit=False)
             sancion.persona=persona
             sancion.save()
+            sancionar_persona(persona, sancion.retencion)
             if s is None:
                 messages.warning(request, 'Se ha creado una sanción para %s.' % persona)
             else:
@@ -382,6 +383,5 @@ def sancion_persona(request, id_persona, id):
 @login_required
 def sanciones_persona(request, persona_id):
     persona=Persona.objects.get(id=persona_id)
-    sanciones=Sancion.objects.filter(persona=persona)
-    return render(request, 'front/lista-sanciones.html', {'sanciones': sanciones, 'persona':persona})
+    return render(request, 'front/lista-sanciones.html', {'persona':persona})
 

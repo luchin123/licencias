@@ -7,7 +7,7 @@ from django.shortcuts import get_object_or_404
 from django.http import HttpResponseRedirect, HttpResponse, Http404
 from django.contrib.auth.decorators import login_required
 
-from reportlab.platypus import SimpleDocTemplate, Paragraph, Table
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Table, PageBreak
 from reportlab.lib.styles import ParagraphStyle
 from reportlab.lib.enums import TA_CENTER, TA_LEFT
 from reportlab.lib.units import mm, cm
@@ -178,6 +178,8 @@ class ImpresionLicencia:
 
         p = Paragraph(str(licencia.numero_licencia), normal_custom(8.5, TA_LEFT))
         elements.append(p)
+
+        elements.append(PageBreak())
 
         p = Paragraph('Fecha Expedicion', negrita_custom(8.5, TA_LEFT))
         elements.append(p)

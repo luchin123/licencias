@@ -6,3 +6,8 @@ def crear_enlace(href, clase, titulo, icono):
 def timestamp_a_fecha(timestamp, formato):
     timestamp = int(timestamp)
     return datetime.fromtimestamp(timestamp).strftime(formato)
+
+def sancionar_persona(persona, retencion):
+	if retencion != 'M':
+		persona.licencia.estado = 'S'
+		persona.licencia.save()
