@@ -3,3 +3,4 @@ fotos
 firmas*
 *.pyc
 migrations
+.env

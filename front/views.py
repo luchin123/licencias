@@ -158,9 +158,12 @@ def consulta_json(request):
     rows = []
     for licencia in licencias:
 
-        links = crear_enlace(reverse('front:licencia', args=[licencia.id]), 'success', 'Ver o Editar', 'edit')
-        links += crear_enlace(reverse('reporte:licencia_print', args=[licencia.id]), 'success', 'Imprimir Anverso', 'print')
-        links += crear_enlace(reverse('reporte:licencia_print2', args=[licencia.id]), 'info', 'Imprimir Reverso', 'print')
+
+        # Esto es para saber si el usuario está autenticado, sino no tiene porque imprimir la licencia ok
+        if request.user.is_authenticated():
+            links = crear_enlace(reverse('front:licencia', args=[licencia.id]), 'success', 'Ver o Editar', 'edit')
+            links += crear_enlace(reverse('reporte:licencia_print', args=[licencia.id]), 'success', 'Imprimir', 'print')
+
 
         obj = OrderedDict({
             '0': licencia.persona.dni,
