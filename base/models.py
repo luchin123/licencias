@@ -51,7 +51,7 @@ class Licencia(models.Model):
     fecha_expedicion = models.DateField()
     fecha_revalidacion = models.DateField()
     restricciones = models.TextField(blank=True, null=True, default='Ninguno')
-    estado = models.CharField(max_length=1, choices=ESTADO, default='Activo')
+    estado = models.CharField(max_length=1, choices=ESTADO, default='A')
 
 import datetime
 class Sancion(models.Model):
@@ -68,7 +68,7 @@ class Sancion(models.Model):
     distrito = models.CharField(max_length=255)
     infracion = models.CharField(max_length=255)
     grado_alcohol = models.CharField(max_length=255)
-    retencion = models.CharField(max_length=1, choices=SANCIONES, default='Multa')
+    retencion = models.CharField(max_length=1, choices=SANCIONES, default='M')
     observacion = models.CharField(max_length=255, default='Ninguna')
     fecha_inicio = models.DateField(default=datetime.datetime.now, blank=True)
     fecha_fin = models.DateField(default=datetime.datetime.now, blank=True)
