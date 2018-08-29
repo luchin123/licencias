@@ -158,7 +158,7 @@ def consulta_json(request):
     rows = []
     for licencia in licencias:
 
-
+        links = ''
         # Esto es para saber si el usuario está autenticado, sino no tiene porque imprimir la licencia ok
         if request.user.is_authenticated():
             links = crear_enlace(reverse('front:licencia', args=[licencia.id]), 'success', 'Ver o Editar', 'edit')
