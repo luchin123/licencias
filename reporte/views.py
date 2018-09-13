@@ -89,7 +89,7 @@ class ImpresionLicencia:
         w, h = categoria.wrap(doc.width, doc.topMargin)
         categoria.drawOn(canvas, 52 * mm, 8.2 * mm)
 
-        categoria = Paragraph(self.licencia.fecha_revalidacion.strftime('%d/%b/%Y'), normal_custom(8.5, TA_LEFT))
+        categoria = Paragraph(self.licencia.fecha_revalidacion.strftime('%d/%m/%Y'), normal_custom(8.5, TA_LEFT))
         w, h = categoria.wrap(doc.width, doc.topMargin)
         categoria.drawOn(canvas, 53 * mm, 4 * mm)
 
@@ -159,7 +159,7 @@ class ImpresionLicencia:
         p = Paragraph(u'F. Expedición', negrita_custom(8.5, TA_LEFT))
         elements.append(p)
 
-        p = Paragraph(self.licencia.fecha_expedicion.strftime('%d/%b/%Y'), normal_custom(8.5, TA_LEFT))
+        p = Paragraph(self.licencia.fecha_expedicion.strftime('%d/%m/%Y'), normal_custom(8.5, TA_LEFT))
         elements.append(p)
 
         elements.append(NextPageTemplate('segunda_hoja'))
@@ -175,7 +175,7 @@ class ImpresionLicencia:
         p = Paragraph('Fecha de Nacimiento', negrita_custom(8.5, TA_LEFT))
         elements.append(p)
 
-        p = Paragraph(self.licencia.persona.fecha_nacimiento.strftime('%d/%b/%Y'), normal_custom(8.5, TA_LEFT))
+        p = Paragraph(self.licencia.persona.fecha_nacimiento.strftime('%d/%m/%Y'), normal_custom(8.5, TA_LEFT))
         elements.append(p)
 
         p = Paragraph('Domicilio', negrita_custom(8.5, TA_LEFT))
